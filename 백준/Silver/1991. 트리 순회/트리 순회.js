@@ -5,13 +5,10 @@ const input = require('fs')
   .split('\n');
 
 const N = +input[0];
-const nodes = input.slice(1).map((v) => v.split(' '));
-
-const map = new Map();
-
-nodes.forEach((node) => {
-  map.set(node[0], [node[1], node[2]]);
-});
+const map = input
+  .slice(1)
+  .map((v) => v.split(' '))
+  .reduce((acc, cur) => acc.set(cur[0], [cur[1], cur[2]]), new Map());
 
 const preOrder = (map, parent) => {
   if (parent === '.') {
